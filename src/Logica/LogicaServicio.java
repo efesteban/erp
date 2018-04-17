@@ -11,4 +11,9 @@ package Logica;
  */
 public class LogicaServicio {
     
+    public LogicaServicio() {
+    }
+    
+    
+    
 }

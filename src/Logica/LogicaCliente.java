@@ -6,6 +6,9 @@
 package Logica;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import persistencia.Cliente;
 import persistencia.Conectar;
@@ -27,6 +30,38 @@ public class LogicaCliente {
        
         
         return listaClientes;
+        
+    }
+    
+    
+    public Cliente returnCustomer(String nombre) throws SQLException{
+        Cliente cliente = new Cliente();
+        
+        Conectar c = new Conectar();
+        Connection conexion = c.conexion();
+        
+        String query = "SELECT * FROM Cliente WHERE nombre = '"+ nombre + "'";
+        
+         try{
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            rs.next();
+            
+            cliente.setIdCliente(rs.getInt("idCliente"));
+            cliente.setNombre(rs.getString("nombre"));
+            
+            st.close();
+
+            return cliente;
+        
+        }catch (Exception e)
+        {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+            return null;
+        } 
+       
         
     }
     

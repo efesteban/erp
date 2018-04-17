@@ -47,9 +47,14 @@ public class FrameInicio extends javax.swing.JFrame {
         MenuItemSalir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menuFacturaIngresar = new javax.swing.JMenuItem();
+        menuFacturaEditar = new javax.swing.JMenuItem();
+        menuFacturaContabilizar = new javax.swing.JMenuItem();
+        menuFacturaVer = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        menInventario = new javax.swing.JMenu();
+        menuVehiculos = new javax.swing.JMenu();
 
         jMenuItem3.setText("jMenuItem3");
 
@@ -75,16 +80,52 @@ public class FrameInicio extends javax.swing.JFrame {
 
         jMenu3.setText("Facturas");
 
-        jMenuItem1.setText("Ingresar Factura");
-        jMenu3.add(jMenuItem1);
+        menuFacturaIngresar.setText("Ingresar Factura");
+        menuFacturaIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFacturaIngresarActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuFacturaIngresar);
 
-        jMenuItem2.setText("Editar Factura");
-        jMenu3.add(jMenuItem2);
+        menuFacturaEditar.setText("Editar Factura");
+        menuFacturaEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFacturaEditarActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuFacturaEditar);
 
-        jMenuItem4.setText("Contabilizar Factura");
-        jMenu3.add(jMenuItem4);
+        menuFacturaContabilizar.setText("Contabilizar Factura");
+        menuFacturaContabilizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFacturaContabilizarActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuFacturaContabilizar);
+
+        menuFacturaVer.setText("Ver Facturas");
+        menuFacturaVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFacturaVerActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuFacturaVer);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("RRHH");
+
+        jMenuItem5.setText("Choferes");
+        jMenu4.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu4);
+
+        menInventario.setText("Inventario");
+        jMenuBar1.add(menInventario);
+
+        menuVehiculos.setText("Vehiculos");
+        jMenuBar1.add(menuVehiculos);
 
         setJMenuBar(jMenuBar1);
 
@@ -114,6 +155,28 @@ public class FrameInicio extends javax.swing.JFrame {
         frameLogin.show();
         this.dispose();
     }//GEN-LAST:event_MenuItemSalirActionPerformed
+
+    private void menuFacturaIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFacturaIngresarActionPerformed
+        // TODO add your handling code here:
+        FrameIngresarFactura frameIngresarFactura = new FrameIngresarFactura(this);
+        frameIngresarFactura.show();
+        this.dispose();
+    }//GEN-LAST:event_menuFacturaIngresarActionPerformed
+
+    private void menuFacturaContabilizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFacturaContabilizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuFacturaContabilizarActionPerformed
+
+    private void menuFacturaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFacturaEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuFacturaEditarActionPerformed
+
+    private void menuFacturaVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFacturaVerActionPerformed
+        // TODO add your handling code here:
+        FrameFacturas frameVerFacturas = new FrameFacturas(this);
+        frameVerFacturas.show();
+        this.dispose();
+    }//GEN-LAST:event_menuFacturaVerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,11 +218,16 @@ public class FrameInicio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JLabel labelUsuario;
+    private javax.swing.JMenu menInventario;
+    private javax.swing.JMenuItem menuFacturaContabilizar;
+    private javax.swing.JMenuItem menuFacturaEditar;
+    private javax.swing.JMenuItem menuFacturaIngresar;
+    private javax.swing.JMenuItem menuFacturaVer;
+    private javax.swing.JMenu menuVehiculos;
     // End of variables declaration//GEN-END:variables
 }

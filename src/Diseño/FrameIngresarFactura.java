@@ -271,7 +271,6 @@ public class FrameIngresarFactura extends javax.swing.JFrame {
         
         //Validar Campos
         if(this.comboBoxOrdenCompra.getSelectedIndex() == 0){
-            
             JOptionPane.showMessageDialog(null, "No ha asignado orden de compra.");
         }else
         {
@@ -285,7 +284,10 @@ public class FrameIngresarFactura extends javax.swing.JFrame {
                 Factura factura = new Factura();
 
                 factura.setIdCliente(logicaCliente.returnCustomer(this.textCliente.getText()).getIdCliente());
-                factura.setOrdenCompra((String) this.comboBoxOrdenCompra.getSelectedItem());
+                
+                OrdenCompra orden = (OrdenCompra) this.comboBoxOrdenCompra.getSelectedItem();
+                factura.setOrdenCompra(orden.getNumero());
+                
                 factura.setNumero(Integer.parseInt(this.textNumFactura.getText()));
                 factura.setDescripcion(this.textDescripcion.getText());
                 factura.setFechaEmision(this.textFechaEmision.getText());
@@ -297,6 +299,7 @@ public class FrameIngresarFactura extends javax.swing.JFrame {
                 if(logicaFactura.ingresarFactura(factura))
                 {
                     JOptionPane.showMessageDialog(null, "Se ha ingresado la factura");
+                    borrarTodo();
                 }else{
                     JOptionPane.showMessageDialog(null, "No se ha ingresado la factura.");
                 }
@@ -315,6 +318,13 @@ public class FrameIngresarFactura extends javax.swing.JFrame {
 
     private void buttonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBorrarActionPerformed
         // TODO add your handling code here:
+        borrarTodo();
+        
+    }//GEN-LAST:event_buttonBorrarActionPerformed
+    
+    
+    private void borrarTodo(){
+        
         this.textCliente.setText("");
         this.textDescripcion.setText("");
         this.textFechaEmision.setText("");
@@ -324,8 +334,8 @@ public class FrameIngresarFactura extends javax.swing.JFrame {
         this.comboBoxOrdenCompra.setSelectedIndex(0);
         this.comboBoxServicio.setSelectedIndex(0);
         
-    }//GEN-LAST:event_buttonBorrarActionPerformed
-
+    }
+    
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         // TODO add your handling code here:  
         this.frameInicio.show();

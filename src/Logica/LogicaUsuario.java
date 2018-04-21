@@ -40,6 +40,11 @@ public class LogicaUsuario {
             usuario.setNombre(rs.getString("usuario"));
             usuario.setContrasena(rs.getString("contrasena"));
             usuario.setPerfil(rs.getInt("Perfil_idPerfil"));
+            
+            usuario.setApellidoMaterno(rs.getString("apellidoMaterno"));
+            usuario.setApellidoPaterno(rs.getString("apellidoPaterno"));
+            usuario.setNombres(rs.getString("nombres"));
+            usuario.setEmail(rs.getString("email"));
 
             st.close();
 

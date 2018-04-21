@@ -6,6 +6,7 @@
 package Diseño;
 
 import Logica.LogicaUsuario;
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util.println;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,6 +49,12 @@ public class FrameLogin extends javax.swing.JFrame {
         jLabel1.setText("Usuario:");
 
         jLabel2.setText("Contraseña:");
+
+        textPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textPassKeyPressed(evt);
+            }
+        });
 
         buttonIngresar.setText("Ingresar");
         buttonIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +127,11 @@ public class FrameLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIngresarActionPerformed
+      ingresar();        
+    }//GEN-LAST:event_buttonIngresarActionPerformed
+
+    
+    private void ingresar(){
         
         //Validando campos
         if(this.textUsuario.getText().length() == 0)
@@ -155,17 +167,24 @@ public class FrameLogin extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(FrameLogin.class.getName()).log(Level.SEVERE, null, ex);
                 }
-        
             }
         }
-        
-    }//GEN-LAST:event_buttonIngresarActionPerformed
-
+    }    
+    
     private void buttonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalirActionPerformed
         // TODO add your handling code here:
         System.exit(0);
         //this.dispose();
     }//GEN-LAST:event_buttonSalirActionPerformed
+
+    private void textPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPassKeyPressed
+       
+        if(evt.getKeyCode() == 10){
+            ingresar();
+        }
+        
+        
+    }//GEN-LAST:event_textPassKeyPressed
 
     /**
      * @param args the command line arguments
@@ -212,4 +231,5 @@ public class FrameLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField textPass;
     private javax.swing.JTextField textUsuario;
     // End of variables declaration//GEN-END:variables
+
 }

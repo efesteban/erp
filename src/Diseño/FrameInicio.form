@@ -73,9 +73,9 @@
             <Property name="text" type="java.lang.String" value="RRHH"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="itemConductoresRRHH">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Choferes"/>
+                <Property name="text" type="java.lang.String" value="Conductores"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -117,8 +117,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="287" max="32767" attributes="0"/>
-              <Component id="labelUsuario" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="429" max="32767" attributes="0"/>
+              <Component id="labelUsuario" min="-2" pref="159" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>

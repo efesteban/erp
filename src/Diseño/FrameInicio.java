@@ -27,7 +27,7 @@ public class FrameInicio extends javax.swing.JFrame {
         
         initComponents();
         this.usuario = usuario;
-        this.labelUsuario.setText(usuario.getNombre());
+        this.labelUsuario.setText(usuario.getNombres() + " " + usuario.getApellidoPaterno() + " " + usuario.getApellidoMaterno());
         
     }
 
@@ -52,7 +52,7 @@ public class FrameInicio extends javax.swing.JFrame {
         menuFacturaContabilizar = new javax.swing.JMenuItem();
         menuFacturaVer = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        itemConductoresRRHH = new javax.swing.JMenuItem();
         menInventario = new javax.swing.JMenu();
         menuVehiculos = new javax.swing.JMenu();
 
@@ -116,8 +116,8 @@ public class FrameInicio extends javax.swing.JFrame {
 
         jMenu4.setText("RRHH");
 
-        jMenuItem5.setText("Choferes");
-        jMenu4.add(jMenuItem5);
+        itemConductoresRRHH.setText("Conductores");
+        jMenu4.add(itemConductoresRRHH);
 
         jMenuBar1.add(jMenu4);
 
@@ -134,8 +134,8 @@ public class FrameInicio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(287, Short.MAX_VALUE)
-                .addComponent(labelUsuario)
+                .addContainerGap(429, Short.MAX_VALUE)
+                .addComponent(labelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -215,13 +215,13 @@ public class FrameInicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuItemSalir;
+    private javax.swing.JMenuItem itemConductoresRRHH;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JMenu menInventario;
     private javax.swing.JMenuItem menuFacturaContabilizar;

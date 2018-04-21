@@ -8,14 +8,20 @@ package Diseño;
 import Logica.LogicaCliente;
 import Logica.LogicaFactura;
 import Logica.LogicaOrdenCompra;
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util.println;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 import persistencia.Factura;
 import persistencia.OrdenCompra;
 
@@ -34,27 +40,38 @@ public class FrameIngresarFactura extends javax.swing.JFrame {
     public FrameIngresarFactura(JFrame frameInicio) {
         this.frameInicio = frameInicio;
         initComponents();
-        cargarDatos();
+        try {
+            cargarDatos();
+        } catch (ParseException ex) {
+            Logger.getLogger(FrameIngresarFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     
     
     public FrameIngresarFactura() {
+        
         initComponents();
-        cargarDatos();
+
+        try {
+            cargarDatos();
+        } catch (ParseException ex) {
+            Logger.getLogger(FrameIngresarFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
     }
     
-    private void cargarDatos(){
+    private void cargarDatos() throws ParseException{
         
+        //Se crea un comboBox de objetos OrdenCompra
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         LogicaOrdenCompra logicaOrdenCompra = new LogicaOrdenCompra();
         
         for(OrdenCompra ordenCompra : logicaOrdenCompra.returnAllOrdenCompra()){
             model.addElement(ordenCompra);
         }
-
         this.comboBoxOrdenCompra.setModel(model);
-        
+         
     }
 
     /**
@@ -112,6 +129,51 @@ public class FrameIngresarFactura extends javax.swing.JFrame {
 
         jLabel7.setText("Fecha de Pago:");
 
+        textNumFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNumFacturaActionPerformed(evt);
+            }
+        });
+        textNumFactura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textNumFacturaKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textNumFacturaKeyPressed(evt);
+            }
+        });
+
+        textFechaEmision.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFechaEmisionFocusLost(evt);
+            }
+        });
+        textFechaEmision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFechaEmisionActionPerformed(evt);
+            }
+        });
+        textFechaEmision.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textFechaEmisionKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFechaEmisionKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textFechaEmisionKeyReleased(evt);
+            }
+        });
+
+        textFechaPago.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textFechaPagoKeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textFechaPagoKeyReleased(evt);
+            }
+        });
+
         textDescripcion.setColumns(20);
         textDescripcion.setRows(5);
         jScrollPane1.setViewportView(textDescripcion);
@@ -144,6 +206,14 @@ public class FrameIngresarFactura extends javax.swing.JFrame {
         textMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textMontoActionPerformed(evt);
+            }
+        });
+        textMonto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textMontoKeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textMontoKeyReleased(evt);
             }
         });
 
@@ -342,6 +412,195 @@ public class FrameIngresarFactura extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void textMontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textMontoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        //int num = (int) c;
+        //JOptionPane.showMessageDialog(null, num);
+        
+        //Determina si el valor ingresar es numero, de no ser asi, consume el evento.
+        if (((int)c<48) || ((int)c>57)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_textMontoKeyTyped
+
+    public boolean isDate (String fecha){
+        Pattern pat = null;
+        Matcher mat = null;
+        
+        pat = Pattern.compile("##/##/##");
+        mat = pat.matcher(fecha);
+        
+        if(mat.find()){
+            return true;
+        }else{
+            return false;
+        }  
+    }
+    
+    
+    
+    private void textFechaEmisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFechaEmisionActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_textFechaEmisionActionPerformed
+
+    private void textFechaEmisionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFechaEmisionFocusLost
+        
+    }//GEN-LAST:event_textFechaEmisionFocusLost
+
+    private void textFechaEmisionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFechaEmisionKeyPressed
+        
+        
+    }//GEN-LAST:event_textFechaEmisionKeyPressed
+
+    private void textNumFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNumFacturaActionPerformed
+       
+    }//GEN-LAST:event_textNumFacturaActionPerformed
+
+    private void textNumFacturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNumFacturaKeyPressed
+        
+    }//GEN-LAST:event_textNumFacturaKeyPressed
+
+    private void textNumFacturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNumFacturaKeyTyped
+        
+        char c = evt.getKeyChar();
+        //int num = (int) c;
+        //JOptionPane.showMessageDialog(null, num);
+        
+        //Determina si el valor ingresar es numero, de no ser asi, consume el evento.
+        if (((int)c<48) || ((int)c>57)){
+            evt.consume();
+        }
+           
+    }//GEN-LAST:event_textNumFacturaKeyTyped
+
+    private void textFechaEmisionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFechaEmisionKeyTyped
+        
+        char c = evt.getKeyChar();
+        //int num = (int) c;
+        //JOptionPane.showMessageDialog(null, num);
+        
+        //Determina si el valor ingresar es numero, de no ser asi, consume el evento.
+        if (((int)c<48) || ((int)c>57) || this.textFechaEmision.getText().length() > 7){
+            evt.consume();
+            
+        }
+               
+    }//GEN-LAST:event_textFechaEmisionKeyTyped
+
+    private void textFechaPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFechaPagoKeyTyped
+        char c = evt.getKeyChar();
+        //int num = (int) c;
+        //JOptionPane.showMessageDialog(null, num);
+        
+        //Determina si el valor ingresar es numero, de no ser asi, consume el evento.
+        if (((int)c<48) || ((int)c>57) || this.textFechaPago.getText().length() > 7){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_textFechaPagoKeyTyped
+
+    private void textFechaEmisionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFechaEmisionKeyReleased
+        char c = evt.getKeyChar();
+        //int num = (int) c;
+        //JOptionPane.showMessageDialog(null, num);
+        
+        //Validamos que el evento no es borrar.
+        if (!((int)c == 8)){
+                                       
+        String p;
+        //JOptionPane.showMessageDialog(null, this.textFechaEmision.getText().length() +"-" +(int)c+ "");
+ 
+        switch (this.textFechaEmision.getText().length()) {
+                
+                case 2:
+                    p = this.textFechaEmision.getText();
+                        this.textFechaEmision.setText(p + "/");          
+                break;
+                
+                case 3:
+                    p = this.textFechaEmision.getText();
+                    if(!p.contains("-")){
+                        String p1 = p.substring(0, 2);
+                        String p2 = p.substring(2);
+                        this.textFechaEmision.setText(p1 + "/" + p2);  
+                    }
+                break;
+
+                case 5:
+                    p = this.textFechaEmision.getText();
+                        this.textFechaEmision.setText(p + "/");
+                break;
+                
+                case 6:
+                    p = this.textFechaEmision.getText();
+                    if(!p.contains("-")){
+                        String p1 = p.substring(0, 5);
+                        String p2 = p.substring(5);
+                        this.textFechaEmision.setText(p1 + "/" + p2);  
+                    }
+                break;
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_textFechaEmisionKeyReleased
+
+    private void textFechaPagoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFechaPagoKeyReleased
+         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        //int num = (int) c;
+        //JOptionPane.showMessageDialog(null, num);
+        
+        //Validamos que el evento no es borrar.
+        if (!((int)c == 8)){
+                                       
+        String p;
+        //JOptionPane.showMessageDialog(null, this.textFechaEmision.getText().length() +"-" +(int)c+ "");
+ 
+        switch (this.textFechaPago.getText().length()) {
+                
+                case 2:
+                    p = this.textFechaPago.getText();
+                        this.textFechaPago.setText(p + "/");          
+                break;
+                
+                case 3:
+                    p = this.textFechaPago.getText();
+                    if(!p.contains("-")){
+                        String p1 = p.substring(0, 2);
+                        String p2 = p.substring(2);
+                        this.textFechaPago.setText(p1 + "/" + p2);  
+                    }
+                break;
+
+                case 5:
+                    p = this.textFechaPago.getText();
+                        this.textFechaPago.setText(p + "/");
+                break;
+                
+                case 6:
+                    p = this.textFechaPago.getText();
+                    if(!p.contains("-")){
+                        String p1 = p.substring(0, 5);
+                        String p2 = p.substring(5);
+                        this.textFechaPago.setText(p1 + "/" + p2);  
+                    }
+                break;
+            }
+        } 
+    }//GEN-LAST:event_textFechaPagoKeyReleased
+
+    private void textMontoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textMontoKeyReleased
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        //int num = (int) c;
+        //JOptionPane.showMessageDialog(null, num);
+        
+        //Falta agregar los puntos ($222.333.444.555)
+        
+    }//GEN-LAST:event_textMontoKeyReleased
 
     /**
      * @param args the command line arguments
